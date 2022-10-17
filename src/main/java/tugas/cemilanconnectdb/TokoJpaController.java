@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import tugas.cemilanconnectdb.exceptions.NonexistentEntityException;
@@ -25,10 +26,13 @@ public class TokoJpaController implements Serializable {
     public TokoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tugas_cemilanconnectdb_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public TokoJpaController() {
     }
 
     public void create(Toko toko) throws PreexistingEntityException, Exception {
